@@ -2,11 +2,12 @@ import React from 'react';
 
 const History = ({ history, moveTo, currentMove }) => {
   return (
-    <ul>
+    <ul className="history-list">
       {history.map((_, move) => {
         return (
           <li key={move}>
             <button
+              className={move === currentMove ? 'history-btn' : 'history-btn active'}
               type="button"
               style={{
                 fontWeight: move === currentMove ? 'bold' : 'normal',
