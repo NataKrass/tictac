@@ -1,16 +1,31 @@
-import React from 'react'
+import React from 'react';
 
-const StatusMessage = ({winner, current}) => {
+const StatusMessage = ({ winner, current }) => {
+  const noMoveLeft = current.board.every(el => el !== null);
 
-    const noMoveLeft = current.board.every((el)=> el !== null);
+  return (
+    <div className="status-message">
+      {' '}
+      {winner && (
+        <>
+          Winner is{' '}
+          <span className={winner === 'X' ? 'text-green' : 'text-orange'}>
+            {' '}
+            {winner}
+          </span>
+          !
+        </>
+      )}
+      {!winner &&
+        !noMoveLeft &&
+        <>
+         Next player is <span className={current.isXNext ? 'text-green' : 'text-orange'}>{current.isXNext ? '0' : 'X'}</span>
+         </>}
+      {!winner && noMoveLeft && <>
+      <span className='text-green'>X</span> and <span className="text-orange">0</span>
+      </>}
+    </div>
+  );
+};
 
-    return (
-        
-        <h2> {winner && `Winner is ${winner}!!!`}
-        {!winner && !noMoveLeft && `Next player is ${current.isXNext ? '0' : 'X'}`}
-        {!winner && noMoveLeft && 'X or 0 tied'}
-        </h2>
-    )
-}
-
-export default StatusMessage
+export default StatusMessage;
